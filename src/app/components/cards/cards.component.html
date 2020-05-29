@@ -2,8 +2,8 @@
 <div class="row animated fadeId">
     <div class="col">
         <div class="card-columns">
-            <div *ngFor="let item of items" class="card">
-                <img [src]="item.images | noimage" class="card-img-top" alt="...">
+            <div *ngFor="let item of items" class="card puntero">
+                <img [src]="item.images | noimage" [routerLink]="['/artista', item.type==='artist'?item.id : item.artists[0].id ]" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">

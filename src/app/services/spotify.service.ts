@@ -10,11 +10,11 @@ export class SpotifyService {
 
   constructor( private http: HttpClient ) { }
 
-  public getQuery( query: string ): Observable<any> {
+  private getQuery( query: string ): Observable<any> {
     const url: string = `https://api.spotify.com/v1/${ query }`;
 
     const headers = new HttpHeaders( { 
-      "Authorization": "Bearer BQB9d6JXPIODStGDn2igfQzPEmmbPd_gqF8B-l3lnJPXtsHRUTVCDXt0t9Rx_wCDJ_CPnE-KP-8x2ZGwvss" 
+      "Authorization": "Bearer BQCLaSnbAPFhbt2rJw_wRyGHOMsQWyguPaT4aDdmUx1r6pWdHhhHEngX6ArAe0lhifILncAh78i83_MP1VE" 
     } );
 
     return this.http.get( url, { headers } );
@@ -28,5 +28,9 @@ export class SpotifyService {
   public searchArtist( name: string ): Observable<any> {
     return this.getQuery( `search?q=${name}&type=artist&limit=15` )
     .pipe( map( data => data[ 'artists' ].items  ) );
+  }
+
+  public getArtist( id: string ): Observable<any> {
+    return this.getQuery( `artists/${id}` );
   }
 }
