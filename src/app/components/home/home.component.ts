@@ -11,10 +11,13 @@ export class HomeComponent implements OnInit {
 
   public releases: any[] = [];
 
+  public load: boolean;
+
   constructor( private service: SpotifyService ) {
+    this.load = true;
     this.service.getNewReleases().subscribe( (data: any) => {
-      this.releases = data.albums.items;
-      console.log( this.releases );
+      this.releases = data;
+      this.load=false;
     } );
   }
 
