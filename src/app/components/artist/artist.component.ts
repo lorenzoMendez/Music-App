@@ -11,6 +11,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class ArtistComponent implements OnInit {
 
   public artist: any;
+  public tracks: any[] = [];
   private id: string;
   public loading: boolean;
 
@@ -23,10 +24,14 @@ export class ArtistComponent implements OnInit {
       this.id = params[ 'id' ];
       
       if( this.id ) {
-        this.service.getArtist( params[ 'id' ] ).subscribe( data => {
+        this.service.getArtist( this.id ).subscribe( data => {
           this.artist = data;
-          console.log( this.artist );
           this.loading = false;
+        } );
+
+        this.service.getTopTracksByArtist( this.id ).subscribe( data => { 
+          this.tracks = data;
+          console.log( this.tracks ); 
         } );
       }
     } );

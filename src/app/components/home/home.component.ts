@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
     this.service.getNewReleases().subscribe( (data: any) => {
       this.releases = data;
       this.load=false;
+    }, ( error ) => {
+      console.log( "SUCEDIO UN ERROR" );
+      console.log( error );
     } );
   }
 
